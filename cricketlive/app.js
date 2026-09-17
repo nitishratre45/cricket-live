@@ -1,8 +1,7 @@
 // ===============================
 // PUBLIC HLS STREAM
 // ===============================
-const STREAM_URL = "https://administrator-information-emotional-sorts.trycloudflare.com/live/video1_stream.m3u8";
-
+const STREAM_URL = "https://administrator-information-emotional-sorts.trycloudflare.com/live/index.m3u8";
 
 // ===============================
 // VIDEO PLAYER
