@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cricket Live</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">🏏 CRICKET<span>LIVE</span></div>
+  <div class="live-pill"><i></i> LIVE</div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="video-wrap">
+      <video id="player" controls playsinline></video>
+      <div id="overlay" class="overlay">
+        <div class="play-icon">▶</div>
+        <h2>Live Match</h2>
+        <p id="message">Waiting for the live stream...</p>
+      </div>
+    </div>
+
+    <div class="match-info">
+      <div>
+        <p class="eyebrow">LIVE CRICKET</p>
+        <h1 id="matchTitle">Live Match</h1>
+        <p class="muted">Live broadcast</p>
+      </div>
+      <div class="status"><i></i> LIVE</div>
+    </div>
+  </section>
+
+  <section class="cards">
+    <div class="card"><span>STATUS</span><strong>LIVE</strong></div>
+    <div class="card"><span>QUALITY</span><strong>Auto</strong></div>
+    <div class="card"><span>PLAYER</span><strong>HLS</strong></div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.6.13"></script>
+<script src="app.js"></script>
+</body>
+</html>
