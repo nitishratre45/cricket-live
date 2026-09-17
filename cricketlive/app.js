@@ -1,27 +1,111 @@
-// Put your PUBLIC HLS URL here.
-// Example: http://YOUR-SERVER:8888/live/index.m3u8
+// ===============================
+// PUBLIC HLS STREAM
+// ===============================
 const STREAM_URL = "https://jacksonville-seq-ingredients-accessible.trycloudflare.com/live/index.m3u8";
 
+
+// ===============================
+// VIDEO PLAYER
+// ===============================
 const video = document.getElementById("player");
 const overlay = document.getElementById("overlay");
 const message = document.getElementById("message");
 
-function hideOverlay(){ overlay.classList.add("hidden"); }
-function showWaiting(text){ message.textContent=text; overlay.classList.remove("hidden"); }
+function hideOverlay() {
+  overlay.classList.add("hidden");
+}
 
+function showWaiting(text) {
+  message.textContent = text;
+  overlay.classList.remove("hidden");
+}
+
+
+// ===============================
+// FIREBASE CONFIG
+// ===============================
+const firebaseConfig = {
+  apiKey: "AIzaSyDm3DIHJfRPEqNqrUlYJutRQm8XIA6H3fs",
+  authDomain: "cricket-live-39106.firebaseapp.com",
+  databaseURL: "https://cricket-live-39106-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "cricket-live-39106",
+  storageBucket: "cricket-live-39106.firebasestorage.app",
+  messagingSenderId: "841890143",
+  appId: "1:841890143:web:ca5b87c9395bdc19145eea",
+  measurementId: "G-ZNEZC8YVMX"
+};
+
+
+// ===============================
+// INITIALIZE FIREBASE
+// ===============================
+firebase.initializeApp(firebaseConfig);
+
+const database = firebase.database();
+
+
+// ===============================
+// LIVE VIEWER COUNT
+// ===============================
+const viewerCountElement = document.getElementById("viewerCount");
+
+const viewerRef = database.ref("liveViewers").push();
+
+// Tell Firebase to remove this viewer
+// automatically when the user disconnects.
+viewerRef.onDisconnect().remove();
+
+// Add this viewer
+viewerRef.set(true);
+
+
+// Listen for realtime viewer count
+database.ref("liveViewers").on("value", (snapshot) => {
+  const count = snapshot.size;
+
+  if (viewerCountElement) {
+    viewerCountElement.textContent = `👁 ${count} Watching`;
+  }
+});
+
+
+// ===============================
+// HLS PLAYER
+// ===============================
 if (!STREAM_URL || STREAM_URL.includes("PASTE_PUBLIC")) {
+
   showWaiting("Add your public HLS stream URL in app.js");
+
 } else if (window.Hls && Hls.isSupported()) {
-  const hls = new Hls({ enableWorker: true, lowLatencyMode: true });
+
+  const hls = new Hls({
+    enableWorker: true,
+    lowLatencyMode: true
+  });
+
   hls.loadSource(STREAM_URL);
   hls.attachMedia(video);
-  hls.on(Hls.Events.MANIFEST_PARSED, () => hideOverlay());
-  hls.on(Hls.Events.ERROR, (_, data) => {
-    if (data.fatal) showWaiting("Stream unavailable. Check the stream URL.");
+
+  hls.on(Hls.Events.MANIFEST_PARSED, () => {
+    hideOverlay();
   });
+
+  hls.on(Hls.Events.ERROR, (_, data) => {
+
+    if (data.fatal) {
+      showWaiting("Stream unavailable. Check the stream URL.");
+    }
+
+  });
+
 } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+
   video.src = STREAM_URL;
+
   video.addEventListener("loadedmetadata", hideOverlay);
+
 } else {
+
   showWaiting("This browser does not support HLS playback.");
+
 }
