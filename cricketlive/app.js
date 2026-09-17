@@ -58,16 +58,13 @@ viewerRef.onDisconnect().remove();
 // Add this viewer
 viewerRef.set(true);
 
-
-// Listen for realtime viewer count
 database.ref("liveViewers").on("value", (snapshot) => {
-  const count = snapshot.size;
+  const count = snapshot.numChildren();
 
   if (viewerCountElement) {
     viewerCountElement.textContent = `👁 ${count} Watching`;
   }
 });
-
 
 // ===============================
 // HLS PLAYER
