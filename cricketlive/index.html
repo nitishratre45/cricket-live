@@ -10,6 +10,7 @@
 <header class="topbar">
   <div class="brand">🏏 CRICKET<span>LIVE</span></div>
   <div class="live-pill"><i></i> LIVE</div>
+  
 </header>
 
 <main class="container">
@@ -29,7 +30,10 @@
         <h1 id="matchTitle">Live Match</h1>
         <p class="muted">Live broadcast</p>
       </div>
-      <div class="status"><i></i> LIVE</div>
+      <div class="status">
+  <i></i> LIVE
+  <span id="viewerCount">👁 0 Watching</span>
+</div>
     </div>
   </section>
 
@@ -41,6 +45,8 @@
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@1.6.13"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
