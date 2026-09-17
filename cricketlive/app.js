@@ -1,6 +1,6 @@
 // Put your PUBLIC HLS URL here.
 // Example: http://YOUR-SERVER:8888/live/index.m3u8
-const STREAM_URL = "PASTE_PUBLIC_HLS_URL_HERE";
+const STREAM_URL = "https://jacksonville-seq-ingredients-accessible.trycloudflare.com/live/index.m3u8";
 
 const video = document.getElementById("player");
 const overlay = document.getElementById("overlay");
