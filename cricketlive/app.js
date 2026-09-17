@@ -1,7 +1,7 @@
 // ===============================
 // PUBLIC HLS STREAM
 // ===============================
-const STREAM_URL = "https://moctobpltc-i.akamaihd.net/hls/live/571329/eight/playlist.m3u8";
+const STREAM_URL = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
 
 // ===============================
 // VIDEO PLAYER
