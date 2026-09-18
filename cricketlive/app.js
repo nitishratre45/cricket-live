@@ -74,8 +74,8 @@ const totalViewersElement =
 
 
 // Starting values
-let liveWatching = 3450;
-let totalViewers = 20000;
+let liveWatching = 1450;
+let totalViewers = 50000+;
 
 
 // ==========================================
@@ -121,8 +121,8 @@ setInterval(() => {
 
   // Keep within 3,200 - 8,000
   liveWatching = Math.max(
-    3200,
-    Math.min(8000, liveWatching)
+    1200,
+    Math.min(6000, liveWatching)
   );
 
   updateViewerDisplay();
@@ -137,10 +137,10 @@ setInterval(() => {
 
 setInterval(() => {
 
-  if (totalViewers < 80000) {
+  if (totalViewers < 30000) {
 
     const increase =
-      Math.floor(Math.random() * 101) + 50;
+      Math.floor(Math.random() * 101) + 20;
 
     totalViewers += increase;
 
