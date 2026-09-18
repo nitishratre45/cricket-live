@@ -75,7 +75,7 @@ const totalViewersElement =
 
 // Starting values
 let liveWatching = 1450;
-let totalViewers = 50000+;
+let totalViewers = 50000;
 
 
 // ==========================================
