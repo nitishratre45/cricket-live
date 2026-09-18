@@ -4,8 +4,7 @@
 
 // Your current public HLS stream
 const STREAM_URL =
-  "https://optical-named-woods-contracts.trycloudflare.com/live/index.m3u8";
-
+  "https://test-streams.mux.dev/test_001/stream.m3u8";
 // ==========================================
 // VIDEO ELEMENTS
 // ==========================================
