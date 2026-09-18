@@ -3,9 +3,8 @@
 // ==========================================
 
 // Your current public HLS stream
-const STREAM_URL =
-  "https://incentive-infrared-block-realized.trycloudflare.com/live/index.m3u8";
-
+const TEST_STREAM =
+  "https://optical-named-woods-contracts.trycloudflare.com/live/index.m3u8";
 
 // ==========================================
 // VIDEO ELEMENTS
