@@ -63,28 +63,91 @@ const database = firebase.database();
 // VIEWER COUNT
 // ==========================================
 
+// ==========================================
+// SIMULATED VIEWER DISPLAY
+// ==========================================
+
 const viewerCountElement =
   document.getElementById("viewerCount");
 
-const viewerRef =
-  database.ref("liveViewers").push();
+const totalViewersElement =
+  document.getElementById("totalViewers");
 
-viewerRef.onDisconnect().remove();
 
-viewerRef.set(true);
+// Starting values
+let liveWatching = 4200;
+let totalViewers = 20000;
 
-database.ref("liveViewers").on("value", (snapshot) => {
 
-  const count = snapshot.numChildren();
+// Random number helper
+function randomBetween(min, max) {
+  return Math.floor(
+    Math.random() * (max - min + 1)
+  ) + min;
+}
+
+
+// Format numbers: 4200 -> 4,200
+function formatNumber(number) {
+  return number.toLocaleString("en-IN");
+}
+
+
+// Update display
+function updateViewerDisplay() {
 
   if (viewerCountElement) {
     viewerCountElement.textContent =
-      `👁 ${count} Watching`;
+      `👁 ${formatNumber(liveWatching)} Watching`;
   }
 
-});
+  if (totalViewersElement) {
+    totalViewersElement.textContent =
+      `👥 ${formatNumber(totalViewers)} Total`;
+  }
+
+}
 
 
+// ==========================================
+// LIVE WATCHING: 3,200 - 8,000
+// Changes every 4 seconds
+// ==========================================
+
+setInterval(() => {
+
+  liveWatching = randomBetween(3200, 8000);
+
+  updateViewerDisplay();
+
+}, 4000);
+
+
+// ==========================================
+// TOTAL VIEWERS: 20,000 - 80,000
+// Gradually increases
+// ==========================================
+
+setInterval(() => {
+
+  if (totalViewers < 80000) {
+
+    // Increase by 50-350
+    totalViewers += randomBetween(50, 350);
+
+    // Never exceed 80,000
+    totalViewers =
+      Math.min(totalViewers, 80000);
+
+    updateViewerDisplay();
+
+  }
+
+}, 7000);
+
+
+// Initial display
+updateViewerDisplay();
 // ==========================================
 // HLS PLAYER
 // ==========================================
