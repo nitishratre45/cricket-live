@@ -62,9 +62,8 @@ const database = firebase.database();
 // ==========================================
 // VIEWER COUNT
 // ==========================================
-
 // ==========================================
-// SIMULATED VIEWER DISPLAY
+// LIVE VIEWER DISPLAY
 // ==========================================
 
 const viewerCountElement =
@@ -75,25 +74,23 @@ const totalViewersElement =
 
 
 // Starting values
-let liveWatching = 4200;
+let liveWatching = 3450;
 let totalViewers = 20000;
 
 
-// Random number helper
-function randomBetween(min, max) {
-  return Math.floor(
-    Math.random() * (max - min + 1)
-  ) + min;
-}
+// ==========================================
+// FORMAT NUMBER
+// ==========================================
 
-
-// Format numbers: 4200 -> 4,200
 function formatNumber(number) {
   return number.toLocaleString("en-IN");
 }
 
 
-// Update display
+// ==========================================
+// UPDATE DISPLAY
+// ==========================================
+
 function updateViewerDisplay() {
 
   if (viewerCountElement) {
@@ -110,41 +107,57 @@ function updateViewerDisplay() {
 
 
 // ==========================================
-// LIVE WATCHING: 3,200 - 8,000
-// Changes every 4 seconds
+// WATCHING COUNT
+// Change only every 1 minute
+// Difference: roughly -30 to +30
 // ==========================================
 
 setInterval(() => {
 
-  liveWatching = randomBetween(3200, 8000);
+  const change =
+    Math.floor(Math.random() * 61) - 30;
+
+  liveWatching += change;
+
+  // Keep within 3,200 - 8,000
+  liveWatching = Math.max(
+    3200,
+    Math.min(8000, liveWatching)
+  );
 
   updateViewerDisplay();
 
-}, 4000);
+}, 60000);
 
 
 // ==========================================
-// TOTAL VIEWERS: 20,000 - 80,000
-// Gradually increases
+// TOTAL VIEWERS
+// Slowly increases every 1 minute
 // ==========================================
 
 setInterval(() => {
 
   if (totalViewers < 80000) {
 
-    // Increase by 50-350
-    totalViewers += randomBetween(50, 350);
+    const increase =
+      Math.floor(Math.random() * 101) + 50;
 
-    // Never exceed 80,000
-    totalViewers =
-      Math.min(totalViewers, 80000);
+    totalViewers += increase;
+
+    totalViewers = Math.min(
+      totalViewers,
+      80000
+    );
 
     updateViewerDisplay();
 
   }
 
-}, 7000);
+}, 60000);
 
+
+// Initial display
+updateViewerDisplay();
 
 // Initial display
 updateViewerDisplay();
