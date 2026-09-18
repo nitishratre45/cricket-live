@@ -1,8 +1,7 @@
 // ===============================
 // PUBLIC HLS STREAM
 // ===============================
-const STREAM_URL = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
-
+const STREAM_URL = "https://while-secretariat-alive-sims.trycloudflare.com/live/index.m3u8";
 // ===============================
 // VIDEO PLAYER
 // ===============================
