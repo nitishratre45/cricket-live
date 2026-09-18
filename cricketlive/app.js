@@ -3,7 +3,7 @@
 // ==========================================
 
 // Your current public HLS stream
-const TEST_STREAM =
+const STREAM_URL =
   "https://optical-named-woods-contracts.trycloudflare.com/live/index.m3u8";
 
 // ==========================================
