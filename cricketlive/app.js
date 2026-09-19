@@ -4,7 +4,7 @@
 
 // Your current public HLS stream
 const STREAM_URL =
-  "https://test-streams.mux.dev/test_001/stream.m3u8";
+ "https://aud-william-restaurant-disabilities.trycloudflare.com/live/index.m3u8";
 // ==========================================
 // VIDEO ELEMENTS
 // ==========================================
